@@ -202,7 +202,7 @@ Concatenar2:
         add     edx, 48
         push    edx
         mov     eax, esp
-        call    strPrintLn
+        call    strPrint
         pop     eax
         xor     eax, eax
         jmp     Concatenar2
@@ -210,18 +210,27 @@ Concatenar2:
 Finalizar2:
         ret
 printIntLn:
+
         push    eax
         push    ecx
         push    ebx
 
         mov     ebx, 10
         xor     ecx, ecx
+
+
         call   Division2
         call   Concatenar2
-
+	
+	mov eax, 0Ah    ;eax= 0Ah
+        push    eax     ;colocamos el valor de eax en pila
+        mov eax, esp    ;eax apunta a esp (posicion de inicio de pila)
+        call strPrintLn 
+	
         pop     ebx
         pop     ecx
         pop     eax
+	pop 	eax
         ret
 
 ; -------------------------strInvertir(cadena)-------------
